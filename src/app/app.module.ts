@@ -5,9 +5,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import {BrowserModule} from "@angular/platform-browser";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatCardModule} from "@angular/material/card";
-import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
+import {CompetitionModule} from "./competition/competition.module";
 
 @NgModule({
   declarations: [
@@ -19,9 +18,8 @@ import {MatButtonModule} from "@angular/material/button";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    MatCardModule,
-    MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    CompetitionModule,
   ],
   bootstrap: [AppComponent]
 })
