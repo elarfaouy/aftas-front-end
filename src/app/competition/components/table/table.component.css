@@ -56,3 +56,9 @@
   font-size: 10px;
   margin-right: 5px;
 }
+
+.table-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}

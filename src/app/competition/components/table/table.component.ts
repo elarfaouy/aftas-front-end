@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CompetitionElement} from "../../models/competition-element";
 import {Subscription} from "rxjs";
 import {CompetitionService} from "../../../services/competition/competition.service";
@@ -6,6 +6,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MatSort, Sort} from "@angular/material/sort";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {BottomSheetComponent} from "../bottom-sheet/bottom-sheet.component";
 
 @Component({
   selector: 'app-table',
@@ -19,7 +21,10 @@ export class TableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<CompetitionElement>(this.competitions);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private _competitionService: CompetitionService, private _liveAnnouncer: LiveAnnouncer) {
+
+  constructor(private _competitionService: CompetitionService,
+              private _bottomSheet: MatBottomSheet,
+              private _liveAnnouncer: LiveAnnouncer) {
   }
 
   ngOnInit(): void {
@@ -48,5 +53,9 @@ export class TableComponent implements OnInit, OnDestroy {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetComponent);
   }
 }
