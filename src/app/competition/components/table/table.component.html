@@ -1,5 +1,14 @@
 <div class="table-title">
-  <h3><strong> Competitions </strong></h3>
+  <h3>
+    <strong> Competitions </strong>
+    <label> : </label>
+    <mat-radio-group [(ngModel)]="statusFilter" (ngModelChange)="filterData($event)">
+      <mat-radio-button value="">All</mat-radio-button>
+      <mat-radio-button value="COMPLETED">Completed</mat-radio-button>
+      <mat-radio-button value="ONGOING">OnGoing</mat-radio-button>
+      <mat-radio-button value="UPCOMING">UpComing</mat-radio-button>
+    </mat-radio-group>
+  </h3>
   <button mat-raised-button color="primary" (click)="openBottomSheet()">Add Competition</button>
 </div>
 

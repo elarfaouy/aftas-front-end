@@ -16,6 +16,7 @@ import {BottomSheetComponent} from "../bottom-sheet/bottom-sheet.component";
 })
 export class TableComponent implements OnInit, OnDestroy {
   private _sub!: Subscription;
+  statusFilter: string = "";
   displayedColumns: string[] = ["code", "date", "start time", "end time", "location", "amount", "status"];
   competitions: CompetitionElement[] = [];
   dataSource = new MatTableDataSource<CompetitionElement>(this.competitions);
@@ -53,6 +54,16 @@ export class TableComponent implements OnInit, OnDestroy {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  filterData(selectedStatus: string): void {
+    if (selectedStatus === "") {
+      this.dataSource = new MatTableDataSource<CompetitionElement>(this.competitions);
+    } else {
+      this.dataSource = new MatTableDataSource<CompetitionElement>(this.competitions.filter(item => item.status === selectedStatus));
+    }
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   openBottomSheet(): void {
