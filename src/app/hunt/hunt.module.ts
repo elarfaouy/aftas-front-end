@@ -8,12 +8,15 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
+import { CompetitionComponent } from './components/competition/competition.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
   declarations: [
     HuntComponent,
-    TableComponent
+    TableComponent,
+    CompetitionComponent
   ],
     imports: [
         CommonModule,
@@ -21,7 +24,8 @@ import {MatCardModule} from "@angular/material/card";
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
-        MatCardModule
+        MatCardModule,
+        MatExpansionModule
     ]
 })
 export class HuntModule { }

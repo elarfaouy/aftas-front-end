@@ -17,6 +17,10 @@ export class CompetitionService {
     return this._http.get<PageableResponse>(this.url + "?page=0&size=50");
   }
 
+  getCompetition(code: string): Observable<CompetitionElement> {
+    return this._http.get<CompetitionElement>(this.url + `/${code}`);
+  }
+
   saveCompetition(competition: CompetitionElement): Observable<CompetitionElement>{
     return this._http.post<CompetitionElement>(this.url, competition);
   }
