@@ -1,7 +1,7 @@
 <div class="competition-cards">
   <div class="competition-card active" ngClass="fire-effect">
     <h3>Competition for Today</h3>
-    <mat-card class="card" *ngIf="currentCompetition" routerLink="/competition">
+    <mat-card class="card" *ngIf="currentCompetition" [routerLink]="['/hunt/competition', currentCompetition.code]">
       <mat-card-header>
         <mat-card-title>{{ currentCompetition.code }}</mat-card-title>
         <mat-card-subtitle>
@@ -20,7 +20,7 @@
 
   <div class="competition-card" ngClass="sky-effect">
     <h3>Next Competition</h3>
-    <mat-card class="card" *ngIf="nextCompetition" routerLink="/competition">
+    <mat-card class="card" *ngIf="nextCompetition" [routerLink]="['/hunt/competition', nextCompetition.code]">
       <mat-card-header>
         <mat-card-title>{{ nextCompetition.code }}</mat-card-title>
         <mat-card-subtitle>
@@ -45,7 +45,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef> Code. </th>
-      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      <td style="cursor: pointer" mat-cell *matCellDef="let element" [routerLink]="['/hunt/competition', element.code]"> {{element.code}} </td>
     </ng-container>
 
     <!-- Name Column -->
