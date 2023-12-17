@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {BrowserModule} from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatButtonModule} from "@angular/material/button";
+import {CompetitionModule} from "./competition/competition.module";
+import {MemberModule} from "./member/member.module";
 
 @NgModule({
   declarations: [
@@ -11,7 +16,12 @@ import {BrowserModule} from "@angular/platform-browser";
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    CompetitionModule,
+    MemberModule
   ],
   bootstrap: [AppComponent]
 })
