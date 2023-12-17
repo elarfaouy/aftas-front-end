@@ -10,12 +10,18 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterOutlet} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
+import { BottomSheetMemberComponent } from './components/bottom-sheet-member/bottom-sheet-member.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
   declarations: [
     MemberComponent,
-    TableComponent
+    TableComponent,
+    BottomSheetMemberComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +31,11 @@ import {MatButtonModule} from "@angular/material/button";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ]
 })
 export class MemberModule { }

@@ -14,4 +14,8 @@ export class MemberService {
   getMembers(): Observable<MemberElement[]> {
     return this._http.get<MemberElement[]>(this.url);
   }
+
+  saveMember(member: MemberElement): Observable<MemberElement> {
+    return this._http.post<MemberElement>(this.url, member);
+  }
 }
