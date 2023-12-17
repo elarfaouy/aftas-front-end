@@ -5,6 +5,8 @@ import {CompetitionService} from "../../../services/competition/competition.serv
 import {CompetitionElement} from "../../../competition/models/competition-element";
 import {HuntElement} from "../../models/hunt-element";
 import {MemberElement} from "../../../member/models/member-element";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {BottomSheetHuntComponent} from "../bottom-sheet-hunt/bottom-sheet-hunt.component";
 
 @Component({
   selector: 'app-competition',
@@ -17,6 +19,7 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   customHunts: CustomDataOfHunting[] = [];
 
   constructor(private _activeRoute: ActivatedRoute,
+              private _bottomSheet: MatBottomSheet,
               private _huntService: HuntService,
               private _competitionService: CompetitionService) {
   }
@@ -57,6 +60,11 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetHuntComponent, {
+      data: { competition: this.competition },
+    });
+  }
 }
 
 interface CustomDataOfHunting {

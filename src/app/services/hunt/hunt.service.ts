@@ -14,4 +14,8 @@ export class HuntService {
   getHuntingOfCompetition(code: string): Observable<HuntElement[]> {
     return this._http.get<HuntElement[]>(this.url + `/competition/${code}`);
   }
+
+  saveHunting(hunt: any): Observable<HuntElement>{
+    return this._http.post<HuntElement>(this.url, hunt);
+  }
 }
