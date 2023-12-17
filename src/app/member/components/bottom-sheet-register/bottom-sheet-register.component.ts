@@ -80,8 +80,8 @@ export class BottomSheetRegisterComponent {
     const register: RegisterElement = {
       rank: 0,
       score: 0,
-      competition: this.competitionControl.value,
-      member: this.memberControl.value,
+      competition: this.competitionControl.value as CompetitionElement,
+      member: this.memberControl.value as MemberElement,
     };
     console.log(register)
     this._memberService.registerMember(register).subscribe(
