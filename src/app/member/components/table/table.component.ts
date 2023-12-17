@@ -8,6 +8,7 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MemberService} from "../../../services/member/member.service";
 import {BottomSheetMemberComponent} from "../bottom-sheet-member/bottom-sheet-member.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {BottomSheetRegisterComponent} from "../bottom-sheet-register/bottom-sheet-register.component";
 
 @Component({
   selector: 'app-table',
@@ -57,5 +58,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   openMemberBottomSheet(): void {
     this._bottomSheet.open(BottomSheetMemberComponent);
+  }
+
+  openRegisterBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetRegisterComponent);
   }
 }

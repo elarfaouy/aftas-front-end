@@ -15,13 +15,16 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import { BottomSheetRegisterComponent } from './components/bottom-sheet-register/bottom-sheet-register.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 @NgModule({
   declarations: [
     MemberComponent,
     TableComponent,
-    BottomSheetMemberComponent
+    BottomSheetMemberComponent,
+    BottomSheetRegisterComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule
   ]
 })
 export class MemberModule { }
