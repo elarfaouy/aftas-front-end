@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {CompetitionModule} from "./competition/competition.module";
+import {MemberModule} from "./member/member.module";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {CompetitionModule} from "./competition/competition.module";
     MatSidenavModule,
     MatButtonModule,
     CompetitionModule,
+    MemberModule
   ],
   bootstrap: [AppComponent]
 })
