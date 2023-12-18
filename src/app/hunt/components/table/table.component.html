@@ -1,16 +1,43 @@
-<div class="table-title">
-  <h3>
-    <strong> Competitions </strong>
-    <label> : </label>
-    <mat-radio-group [(ngModel)]="statusFilter" (ngModelChange)="filterData($event)">
-      <mat-radio-button value="">All</mat-radio-button>
-      <mat-radio-button value="COMPLETED">Completed</mat-radio-button>
-      <mat-radio-button value="ONGOING">OnGoing</mat-radio-button>
-      <mat-radio-button value="UPCOMING">UpComing</mat-radio-button>
-    </mat-radio-group>
-  </h3>
-  <button mat-raised-button color="primary" (click)="openBottomSheet()">Add Competition</button>
+<div class="competition-cards">
+  <div class="competition-card active" ngClass="fire-effect">
+    <h3>Competition for Today</h3>
+    <mat-card class="card" *ngIf="currentCompetition" [routerLink]="['/hunt/competition', currentCompetition.code]">
+      <mat-card-header>
+        <mat-card-title>{{ currentCompetition.code }}</mat-card-title>
+        <mat-card-subtitle>
+          <p>Location: {{ currentCompetition.location }}</p>
+          <span class="badge badge-ongoing">OnGoing</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Date: {{ currentCompetition.date }}</p>
+        <p>Start Time: {{ currentCompetition.startTime }}</p>
+        <p>Amount: {{ currentCompetition.amount }}</p>
+        <p>End Time: {{ currentCompetition.endTime }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="competition-card" ngClass="sky-effect">
+    <h3>Next Competition</h3>
+    <mat-card class="card" *ngIf="nextCompetition" [routerLink]="['/hunt/competition', nextCompetition.code]">
+      <mat-card-header>
+        <mat-card-title>{{ nextCompetition.code }}</mat-card-title>
+        <mat-card-subtitle>
+          <p>Location: {{ nextCompetition.location }}</p>
+          <span class="badge badge-upcoming">UpComing</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Date: {{ nextCompetition.date }}</p>
+        <p>Start Time: {{ nextCompetition.startTime }}</p>
+        <p>Amount: {{ nextCompetition.amount }}</p>
+        <p>End Time: {{ nextCompetition.endTime }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
@@ -18,7 +45,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef> Code. </th>
-      <td style="cursor: pointer" mat-cell *matCellDef="let element" [routerLink]="['/competition/result', element.code]"> {{element.code}} </td>
+      <td style="cursor: pointer" mat-cell *matCellDef="let element" [routerLink]="['/hunt/competition', element.code]"> {{element.code}} </td>
     </ng-container>
 
     <!-- Name Column -->

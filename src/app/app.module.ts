@@ -8,6 +8,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {CompetitionModule} from "./competition/competition.module";
 import {MemberModule} from "./member/member.module";
+import {HuntModule} from "./hunt/hunt.module";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MemberModule} from "./member/member.module";
     MatSidenavModule,
     MatButtonModule,
     CompetitionModule,
-    MemberModule
+    MemberModule,
+    HuntModule
   ],
   bootstrap: [AppComponent]
 })

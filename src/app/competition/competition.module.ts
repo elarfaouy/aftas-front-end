@@ -15,28 +15,32 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
+import { PodiumComponent } from './components/podium/podium.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
     CompetitionComponent,
     TableComponent,
     BottomSheetComponent,
+    PodiumComponent,
   ],
-  imports: [
-    CommonModule,
-    CompetitionRoutingModule,
-    HttpClientModule,
-    RouterOutlet,
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSortModule,
-    MatBottomSheetModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatRadioModule
-  ],
+    imports: [
+        CommonModule,
+        CompetitionRoutingModule,
+        HttpClientModule,
+        RouterOutlet,
+        MatTableModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSortModule,
+        MatBottomSheetModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatRadioModule,
+        MatCardModule
+    ],
 })
 export class CompetitionModule { }

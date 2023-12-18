@@ -4,6 +4,6 @@ import {MemberElement} from "./member-element";
 export interface RegisterElement {
   rank: number;
   score: number;
-  competition: string | CompetitionElement | null;
-  member: string | MemberElement | null;
+  competition: CompetitionElement | null;
+  member: MemberElement | null;
 }
