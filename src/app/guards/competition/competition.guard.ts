@@ -1,5 +1,5 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {CompetitionService} from "../../../services/competition/competition.service";
+import {CompetitionService} from "../../services/competition/competition.service";
 import {Injectable} from "@angular/core";
 import {catchError, map, Observable, of} from "rxjs";
 

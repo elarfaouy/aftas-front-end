@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {CompetitionComponent} from "./components/competition/competition.component";
 import {TableComponent} from "./components/table/table.component";
 import {PodiumComponent} from "./components/podium/podium.component";
-import {CompetitionGuard} from "../hunt/components/competition/competition.guard";
+import {CompetitionGuard} from "../guards/competition/competition.guard";
 
 const routes: Routes = [
   {

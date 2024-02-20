@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { competitionGuard } from './competition.guard';
+import { hasRightAuthorityGuard } from './has-right-authority.guard';
 
-describe('competitionGuard', () => {
+describe('hasRightAuthorityGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => competitionGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => hasRightAuthorityGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
