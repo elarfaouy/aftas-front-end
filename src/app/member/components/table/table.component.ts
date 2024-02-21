@@ -10,6 +10,7 @@ import {BottomSheetMemberComponent} from "../bottom-sheet-member/bottom-sheet-me
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {BottomSheetRegisterComponent} from "../bottom-sheet-register/bottom-sheet-register.component";
 import {AuthenticationService} from "../../../services/authentication/authentication.service";
+import {BottomSheetUpdateMemberComponent} from "../bottom-sheet-update-member/bottom-sheet-update-member.component";
 
 @Component({
   selector: 'app-table',
@@ -18,7 +19,7 @@ import {AuthenticationService} from "../../../services/authentication/authentica
 })
 export class TableComponent implements OnInit, OnDestroy {
   private _sub!: Subscription;
-  displayedColumns: string[] = ["num", "name", "family name", "accession date", "nationality", "identity number", "identity document"];
+  displayedColumns: string[] = ["num", "name", "family name", "accession date", "nationality", "identity number", "identity document", "actions"];
   members: MemberElement[] = [];
   dataSource = new MatTableDataSource<MemberElement>(this.members);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -73,6 +74,18 @@ export class TableComponent implements OnInit, OnDestroy {
       (hasRight) => {
         if (hasRight) {
           this._bottomSheet.open(BottomSheetRegisterComponent);
+        }
+      }
+    );
+  }
+
+  openUpdateMemberBottomSheet(user: any): void {
+    this.authService.hasRightAuthority("WRITE_MEMBER").subscribe(
+      (hasRight) => {
+        if (hasRight) {
+          this._bottomSheet.open(BottomSheetUpdateMemberComponent, {
+            data: { user: user },
+          });
         }
       }
     );

@@ -17,6 +17,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import { BottomSheetRegisterComponent } from './components/bottom-sheet-register/bottom-sheet-register.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { BottomSheetUpdateMemberComponent } from './components/bottom-sheet-update-member/bottom-sheet-update-member.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -24,22 +26,24 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MemberComponent,
     TableComponent,
     BottomSheetMemberComponent,
-    BottomSheetRegisterComponent
+    BottomSheetRegisterComponent,
+    BottomSheetUpdateMemberComponent
   ],
-  imports: [
-    CommonModule,
-    MemberRoutingModule,
-    HttpClientModule,
-    RouterOutlet,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatAutocompleteModule
-  ]
+    imports: [
+        CommonModule,
+        MemberRoutingModule,
+        HttpClientModule,
+        RouterOutlet,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatIconModule
+    ]
 })
 export class MemberModule { }
