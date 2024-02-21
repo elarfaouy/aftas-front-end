@@ -4,13 +4,14 @@ import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 import {User} from "../../models/user";
 import {Response} from "../../models/response";
 import {ToastrService} from "ngx-toastr";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private url: string = "http://localhost:8888/api/auth/";
-  private _user!: User;
+  private _user: User | null = null;
 
   constructor(private http: HttpClient,
               private toast: ToastrService) {
@@ -61,9 +62,7 @@ export class AuthenticationService {
           map(() => true),
           catchError((error: HttpErrorResponse) => {
             if (error.status === 401 || error.status === 403) {
-              localStorage.removeItem("access-token");
-              localStorage.removeItem("token-expiration");
-              localStorage.removeItem("refresh-token");
+              this.logout();
             }
             return throwError(() => new Error("No or Invalid token"));
           })
@@ -74,15 +73,27 @@ export class AuthenticationService {
     return of(false);
   }
 
-  hasRightAuthority(role: string): Observable<boolean> {
+  hasRightAuthority(authority: string): Observable<boolean> {
     return this.user.pipe(
-      map(user => user.role == role),
+      map(user => user.permissions!.includes(authority)),
       tap((value) => {
           if (!value) {
             this.toast.error("You don't have the right authority", "Error");
           }
         }
       )
+    );
+  }
+
+  logout() {
+    this.http.post(this.url + 'logout', null).subscribe(
+      () => {
+        localStorage.removeItem("access-token");
+        localStorage.removeItem("token-expiration");
+        localStorage.removeItem("refresh-token");
+
+        this._user = null;
+      }
     );
   }
 }

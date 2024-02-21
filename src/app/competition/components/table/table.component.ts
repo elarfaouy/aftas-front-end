@@ -8,6 +8,7 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {BottomSheetComponent} from "../bottom-sheet/bottom-sheet.component";
+import {AuthenticationService} from "../../../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-table',
@@ -25,7 +26,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   constructor(private _competitionService: CompetitionService,
               private _bottomSheet: MatBottomSheet,
-              private _liveAnnouncer: LiveAnnouncer) {
+              private _liveAnnouncer: LiveAnnouncer,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -67,6 +69,12 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   openBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetComponent);
+    this.authService.hasRightAuthority("WRITE_COMPETITION").subscribe(
+      (hasRight) => {
+        if (hasRight) {
+          this._bottomSheet.open(BottomSheetComponent);
+        }
+      }
+    );
   }
 }

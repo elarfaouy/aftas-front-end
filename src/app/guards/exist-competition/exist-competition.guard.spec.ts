@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { authenticateGuard } from './authenticate.guard';
+import { existCompetitionGuard } from './exist-competition.guard';
 
-describe('authenticateGuard', () => {
+describe('existCompetitionGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => authenticateGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => existCompetitionGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

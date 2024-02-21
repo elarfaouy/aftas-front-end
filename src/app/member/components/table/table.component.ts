@@ -9,6 +9,7 @@ import {MemberService} from "../../../services/member/member.service";
 import {BottomSheetMemberComponent} from "../bottom-sheet-member/bottom-sheet-member.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {BottomSheetRegisterComponent} from "../bottom-sheet-register/bottom-sheet-register.component";
+import {AuthenticationService} from "../../../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-table',
@@ -25,7 +26,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   constructor(private _memberService: MemberService,
               private _bottomSheet: MatBottomSheet,
-              private _liveAnnouncer: LiveAnnouncer) {
+              private _liveAnnouncer: LiveAnnouncer,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -57,10 +59,22 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   openMemberBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetMemberComponent);
+    this.authService.hasRightAuthority("WRITE_MEMBER").subscribe(
+      (hasRight) => {
+        if (hasRight) {
+          this._bottomSheet.open(BottomSheetMemberComponent);
+        }
+      }
+    );
   }
 
   openRegisterBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetRegisterComponent);
+    this.authService.hasRightAuthority("WRITE_RANKING").subscribe(
+      (hasRight) => {
+        if (hasRight) {
+          this._bottomSheet.open(BottomSheetRegisterComponent);
+        }
+      }
+    );
   }
 }

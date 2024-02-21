@@ -4,5 +4,5 @@ import {AuthenticationService} from "../../services/authentication/authenticatio
 
 export const hasRightAuthorityGuard: CanActivateFn = (route, state) => {
   let authService = inject(AuthenticationService);
-  return authService.hasRightAuthority(route.data["role"]);
+  return authService.hasRightAuthority(route.data["authority"]);
 };

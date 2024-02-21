@@ -9,6 +9,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {CompetitionModule} from "./competition/competition.module";
 import {MemberModule} from "./member/member.module";
 import {HuntModule} from "./hunt/hunt.module";
+import {AuthModule} from "./auth/auth.module";
+import {ToastrModule} from "ngx-toastr";
+import {provideHttpClient, withInterceptors} from "@angular/common/http";
+import {authenticationInterceptor} from "./interceptor/authentication/authentication.interceptor";
 
 @NgModule({
   declarations: [
@@ -23,7 +27,16 @@ import {HuntModule} from "./hunt/hunt.module";
     MatButtonModule,
     CompetitionModule,
     MemberModule,
-    HuntModule
+    HuntModule,
+    AuthModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 2000,
+      }
+    ),
+  ],
+  providers: [
+    provideHttpClient(withInterceptors([authenticationInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
