@@ -4,7 +4,6 @@ import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 import {User} from "../../models/user";
 import {Response} from "../../models/response";
 import {ToastrService} from "ngx-toastr";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Injectable({
   providedIn: 'root'
@@ -61,8 +60,8 @@ export class AuthenticationService {
         .pipe(
           map(() => true),
           catchError((error: HttpErrorResponse) => {
-            if (error.status === 401 || error.status === 403) {
-              this.logout();
+            if (error.status == 401 || error.status == 403) {
+              this.refreshToken().subscribe();
             }
             return throwError(() => new Error("No or Invalid token"));
           })
@@ -75,7 +74,7 @@ export class AuthenticationService {
 
   hasRightAuthority(authority: string): Observable<boolean> {
     return this.user.pipe(
-      map(user => user.permissions!.includes(authority)),
+      map(user => user.permissions != null && user.permissions.includes(authority)),
       tap((value) => {
           if (!value) {
             this.toast.error("You don't have the right authority", "Error");
@@ -88,12 +87,30 @@ export class AuthenticationService {
   logout() {
     this.http.post(this.url + 'logout', null).subscribe(
       () => {
-        localStorage.removeItem("access-token");
-        localStorage.removeItem("token-expiration");
-        localStorage.removeItem("refresh-token");
-
-        this._user = null;
+        this.clearToken();
       }
     );
+  }
+
+  refreshToken(): Observable<Response> {
+    let refreshToken = localStorage.getItem("refresh-token");
+    return this.http.post<Response>(this.url + 'refresh-token', {refreshToken}).pipe(
+      tap((response) => {
+        localStorage.setItem("access-token", response["access-token"]);
+        localStorage.setItem("token-expiration", response["token-expiration"]);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.clearToken();
+        return throwError(() => new Error("No or Invalid refresh token"));
+      })
+    );
+  }
+
+  clearToken() {
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("token-expiration");
+    localStorage.removeItem("refresh-token");
+
+    this._user = null;
   }
 }
